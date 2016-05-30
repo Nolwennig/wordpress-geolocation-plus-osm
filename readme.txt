@@ -1,10 +1,10 @@
 === Geolocation Plus ===
-Contributors: adrianshort, frsh
+Contributors: adrianshort, frsh, freddyb
 Tags: georss, geolocation, maps, geotag, geo, mapping
 Requires at least: 2.9.2
 Tested up to: 3.9.1
 Stable tag: 0.1.5.1
-License: GPLv2 or later
+License: GPLv3 or later
 
 Geolocation Plus lets you geotag your posts, shows a map on the post page and serves a GeoRSS feed of all geotagged posts on your site.
 
