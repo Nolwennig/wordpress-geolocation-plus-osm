@@ -152,8 +152,8 @@ function admin_head() {
 	$post_type = $post->post_type;
 	$zoom = (int) get_option('geolocation_default_zoom');
 	?>
-		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript" src="https://maps.google.com/maps/api/js"></script>
 		<script type="text/javascript">
 		 	var $j = jQuery.noConflict();
 			$j(function() {
@@ -357,8 +357,8 @@ function add_google_maps($posts) {
 	$zoom = (int) get_option('geolocation_default_zoom');
 	global $post_count;
 	$post_count = count($posts);
-	
-	echo '<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+	echo '<script type="text/javascript" src="https://maps.google.com/maps/api/js"></script>
 	<script type="text/javascript">
 		var $j = jQuery.noConflict();
 		$j(function(){
@@ -423,27 +423,27 @@ function add_google_maps($posts) {
 					}
 			    },800);
 			});
-			
+
 			$j("#map").mouseover(function(){
 				allowDisappear = false;
 				cancelDisappear = true;
 				$j("#map").css("visibility", "visible");
 			});
-			
+
 			$j("#map").mouseout(function(){
 				allowDisappear = true;
 				cancelDisappear = false;
 				$j(".geolocation-link").mouseout();
 			});
-			
+
 			function placeMarker(location) {
 				map.setZoom('.$zoom.');
 				marker.setPosition(location);
 				map.setCenter(location);
 			}
-			
+
 			google.maps.event.addListener(map, "click", function() {
-				window.location = "http://maps.google.com/maps?q=" + map.center.lat() + ",+" + map.center.lng();
+				window.location = "https://maps.google.com/maps?q=" + map.center.lat() + ",+" + map.center.lng();
 			});
 		});
 	</script>';
@@ -505,12 +505,12 @@ function display_location($content)  {
 
 	// Put the original shortcodes back
 	$shortcode_tags = $orig_shortcode_tags;
-	
+
     return $content;
 }
 
 function reverse_geocode($latitude, $longitude) {
-	$url = "http://maps.google.com/maps/api/geocode/json?latlng=".$latitude.",".$longitude."&sensor=false";
+	$url = "https://maps.google.com/maps/api/geocode/json?latlng=".$latitude.",".$longitude;
 	$result = wp_remote_get($url);
 	$json = json_decode($result['body']);
 	foreach ($json->results as $result)
@@ -524,7 +524,7 @@ function reverse_geocode($latitude, $longitude) {
 	    		$country = $addressPart->long_name;
 		}
 	}
-	
+
 	if(($city != '') && ($state != '') && ($country != ''))
 		$address = $city.', '.$state.', '.$country;
 	else if(($city != '') && ($state != ''))
